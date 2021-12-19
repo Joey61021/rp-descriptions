@@ -1,0 +1,32 @@
+General:
+  Colored-Descriptions: true
+  Player-Click:
+    Enabled: true
+    Cooldown-Ticks: 20
+    Messages:
+      No-Description: '&cNo description set!'
+      Player-Clicked:
+        - '&fUsername: &a%username%'
+        - '&fCharacter Description: &b%description%'
+    Sound:
+      Enabled: true
+      Type: ENTITY_ITEM_PICKUP
+    Disabled-Worlds:
+      - disabled_world_name
+  Messages:
+    No-Console: '&cYou cannot use this command via console.'
+    No-Permission: '&cYou do not have permission to perform this command.'
+    Enter-Player: '&cPlease enter a players username!'
+    No-Player: '&cSorry, but we cannot find this player in your server!'
+Commands:
+  ViewDesc:
+    Description: '&fYour Description: &b%description%'
+    No-Description: '&cYou do not have a description set!'
+  SetDesc:
+    Description-Set: '&aYour description has successfully been set!'
+    Enter-Description: '&cPlease enter a description to set!'
+    Description-Reset: '&aYour description has been reset successfully!'
+  ForceDesc:
+    No-Description: '&c%player% does not have a description to reset!'
+    Description-Set: '&aYou have successfully set %player%''s description!'
+    Description-Reset: '&aYou have successfully reset %player%''s description!'

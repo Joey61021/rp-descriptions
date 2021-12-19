@@ -1,0 +1,12 @@
+author: Texxyy
+name: RPDescriptions
+main: com.rpdescriptions.plugin.Main
+version: ${project.version}
+
+commands:
+  forcedesc:
+    aliases: [forcedescription]
+  setdesc:
+    aliases: [setdescription]
+  viewdesc:
+    aliases: [viewdescription]
