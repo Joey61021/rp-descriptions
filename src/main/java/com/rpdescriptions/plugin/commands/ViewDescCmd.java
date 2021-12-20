@@ -1,8 +1,8 @@
 package com.rpdescriptions.plugin.commands;
 
-import com.rpdescriptions.plugin.misc.Config;
-import com.rpdescriptions.plugin.misc.Utils;
 import com.rpdescriptions.plugin.services.DescriptionService;
+import com.rpdescriptions.plugin.services.message.Message;
+import com.rpdescriptions.plugin.services.message.MessageService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
@@ -14,19 +14,20 @@ import org.bukkit.entity.Player;
 public class ViewDescCmd implements CommandExecutor {
 
 	@NonNull
-	private final Config             config;
+	private final MessageService     messageService;
 	@NonNull
 	private final DescriptionService descriptionService;
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	  	if (!(sender instanceof Player)) {
-			sender.sendMessage(Utils.color(config.getString("Messages.No-Console")));
+			messageService.sendMessage(sender, Message.GENERAL_NO_CONSOLE);
 			return false;
 		}
-		sender.sendMessage(Utils.color(config.getString("Commands.ViewDesc.Description"))
-				.replace("%description%", descriptionService.getDescription((Player) sender) == null ?
-						Utils.color(config.getString("Commands.ViewDesc.No-Description")) : descriptionService.getDescription((Player) sender)));
+		Player player = (Player) sender;
+		messageService.sendMessage(sender,
+									Message.CMD_VIEWDESC_MESSAGES_DESCRIPTION,
+									(s) -> s.replace("%description%", descriptionService.getDescription(player)));
 	  	return false;
 	}
 }

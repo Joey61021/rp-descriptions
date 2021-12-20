@@ -4,10 +4,8 @@ General:
     Enabled: true
     Cooldown-Ticks: 20
     Messages:
-      No-Description: '&cNo description set!'
-      Player-Clicked:
-        - '&fUsername: &a%username%'
-        - '&fCharacter Description: &b%description%'
+      - '&fUsername: &a%username%'
+      - '&fCharacter Description: &b%description%'
     Sound:
       Enabled: true
       Type: ENTITY_ITEM_PICKUP
@@ -20,13 +18,15 @@ General:
     No-Player: '&cSorry, but we cannot find this player in your server!'
 Commands:
   ViewDesc:
-    Description: '&fYour Description: &b%description%'
-    No-Description: '&cYou do not have a description set!'
+    Messages:
+      Description: '&fYour Description: &b%description%'
   SetDesc:
-    Description-Set: '&aYour description has successfully been set!'
-    Enter-Description: '&cPlease enter a description to set!'
-    Description-Reset: '&aYour description has been reset successfully!'
+    Messages:
+      Description-Set: '&aYour description has successfully been set!'
+      Description-Reset: '&aYour description has been reset successfully!'
+      Enter-Description: '&cPlease enter a description to set!'
   ForceDesc:
-    No-Description: '&c%player% does not have a description to reset!'
-    Description-Set: '&aYou have successfully set %player%''s description!'
-    Description-Reset: '&aYou have successfully reset %player%''s description!'
+    Messages:
+      Description-Set: '&aYou have successfully set %target%''s description!'
+      Description-Reset: '&aYou have successfully reset %target%''s description!'
+      No-Description: '&c%target% does not have a description to reset!'

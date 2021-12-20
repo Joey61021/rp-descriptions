@@ -7,6 +7,7 @@ import com.rpdescriptions.plugin.listeners.InteractAtEntityListener;
 import com.rpdescriptions.plugin.misc.Config;
 import com.rpdescriptions.plugin.misc.PAPIExpansion;
 import com.rpdescriptions.plugin.services.DescriptionService;
+import com.rpdescriptions.plugin.services.message.MessageService;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
@@ -17,6 +18,7 @@ public class Main extends JavaPlugin {
 	private Config config;
 	private Config databaseConfig;
 
+	private MessageService     messageService;
 	private DescriptionService descriptionService;
 
 	public void onEnable() {
@@ -35,6 +37,7 @@ public class Main extends JavaPlugin {
 	}
 
 	void setupServices() {
+		messageService     = new MessageService(config);
 		descriptionService = new DescriptionService(databaseConfig);
 	}
 
@@ -43,7 +46,7 @@ public class Main extends JavaPlugin {
 	}
 
 	void registerEvents() {
-		registerListener(new InteractAtEntityListener(config, descriptionService));
+		registerListener(new InteractAtEntityListener(config, messageService, descriptionService));
 	}
 
 	void registerCommandExecutor(String name, CommandExecutor executor) {
@@ -55,8 +58,8 @@ public class Main extends JavaPlugin {
 	}
 
 	void registerCommands() {
-		registerCommandExecutor("forcedesc", new ForceDescCmd(config, databaseConfig));
-		registerCommandExecutor("setdesc", new SetDescCmd(config, databaseConfig));
-		registerCommandExecutor("viewdesc", new ViewDescCmd(config, descriptionService));
+		registerCommandExecutor("forcedesc", new ForceDescCmd(messageService, descriptionService, databaseConfig));
+		registerCommandExecutor("setdesc", new SetDescCmd(messageService, descriptionService, databaseConfig));
+		registerCommandExecutor("viewdesc", new ViewDescCmd(messageService, descriptionService));
 	}
 }

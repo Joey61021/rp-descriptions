@@ -4,11 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeSpan {
 
-    public long amount;
+    public long     amount;
     public TimeUnit timeUnit;
 
     public TimeSpan(long amount, TimeUnit timeUnit) {
-        this.amount = amount;
+        this.amount   = amount;
         this.timeUnit = timeUnit;
     }
 }

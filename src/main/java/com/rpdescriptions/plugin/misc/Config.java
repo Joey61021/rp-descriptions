@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 
 public class Config extends YamlConfiguration {
 
-	public File file;
+	public File       file;
 	public JavaPlugin javaPlugin;
 
 	public Config(JavaPlugin javaPlugin, File path, String name) {

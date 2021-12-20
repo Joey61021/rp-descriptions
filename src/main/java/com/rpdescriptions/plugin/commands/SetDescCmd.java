@@ -1,7 +1,9 @@
 package com.rpdescriptions.plugin.commands;
 
 import com.rpdescriptions.plugin.misc.Config;
-import com.rpdescriptions.plugin.misc.Utils;
+import com.rpdescriptions.plugin.services.DescriptionService;
+import com.rpdescriptions.plugin.services.message.Message;
+import com.rpdescriptions.plugin.services.message.MessageService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
@@ -13,32 +15,34 @@ import org.bukkit.entity.Player;
 public class SetDescCmd implements CommandExecutor {
 
 	@NonNull
-	private final Config config;
+	private final MessageService     messageService;
 	@NonNull
-	private final Config databaseConfig;
+	private final DescriptionService descriptionService;
+	@NonNull
+	private final Config             databaseConfig;
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(Utils.color(config.getString("Messages.No-Console")));
+			messageService.sendMessage(sender, Message.GENERAL_NO_CONSOLE);
 			return false;
 		}
 		Player player = (Player) sender;
 		if (args.length == 0) {
-			if (databaseConfig.get("Descriptions." + player.getUniqueId()) == null) {
-				player.sendMessage(Utils.color(config.getString("Commands.SetDesc.Enter-Description")));
+			if (!descriptionService.hasDescription(player)) {
+				messageService.sendMessage(player, Message.CMD_SETDESC_MESSAGES_ENTER_DESCRIPTION);
 				return false;
 			}
 			databaseConfig.set("Descriptions." + player.getUniqueId(), null);
 			databaseConfig.save();
-			player.sendMessage(Utils.color(config.getString("Commands.SetDesc.Description-Reset")));
+			messageService.sendMessage(player, Message.CMD_SETDESC_MESSAGES_DESCRIPTION_RESET);
 			return false;
 		}
 		StringBuilder sb = new StringBuilder();
 		for (String arg : args) sb.append(arg).append(" ");
 		databaseConfig.set("Descriptions." + player.getUniqueId(), sb.toString());
 		databaseConfig.save();
-		player.sendMessage(Utils.color(config.getString("Commands.SetDesc.Description-Set")));
+		messageService.sendMessage(sender, Message.CMD_SETDESC_MESSAGES_DESCRIPTION_SET);
 		return false;
 	}
 }
