@@ -4,11 +4,11 @@ import com.rpdescriptions.plugin.cooldown.CooldownManager;
 import com.rpdescriptions.plugin.cooldown.TimeSpan;
 import com.rpdescriptions.plugin.misc.Config;
 import com.rpdescriptions.plugin.services.DescriptionService;
+import com.rpdescriptions.plugin.services.SoundService;
 import com.rpdescriptions.plugin.services.message.Message;
 import com.rpdescriptions.plugin.services.message.MessageService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +23,8 @@ public class InteractAtEntityListener implements Listener {
     @NonNull
     private final Config             config;
     @NonNull
+    private final SoundService       soundService;
+    @NonNull
     private final MessageService     messageService;
     @NonNull
     private final DescriptionService descriptionService;
@@ -35,8 +37,7 @@ public class InteractAtEntityListener implements Listener {
             if (event.getRightClicked().getWorld().getName().equalsIgnoreCase(worlds)) return;
         }
         if (CooldownManager.checkCooldown("click_" + player.getUniqueId())) {
-            if (config.getBoolean("General.Player-Click.Sound.Enabled"))
-                player.playSound(player.getLocation(), Sound.valueOf(config.getString("General.Player-Click.Sound.Type").toUpperCase()), 1, 1);
+            soundService.playSound(player, "General.Player-Click.Sound");
             Player target = (Player) event.getRightClicked();
             messageService.sendMessage(player,
                                         Message.GENERAL_PLAYER_CLICK_MESSAGES,

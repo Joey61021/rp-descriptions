@@ -7,6 +7,7 @@ import com.rpdescriptions.plugin.listeners.InteractAtEntityListener;
 import com.rpdescriptions.plugin.misc.Config;
 import com.rpdescriptions.plugin.misc.PAPIExpansion;
 import com.rpdescriptions.plugin.services.DescriptionService;
+import com.rpdescriptions.plugin.services.SoundService;
 import com.rpdescriptions.plugin.services.message.MessageService;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -20,6 +21,7 @@ public class Main extends JavaPlugin {
 
 	private MessageService     messageService;
 	private DescriptionService descriptionService;
+	private SoundService       soundService;
 
 	public void onEnable() {
 		loadFiles();
@@ -39,6 +41,7 @@ public class Main extends JavaPlugin {
 	void setupServices() {
 		messageService     = new MessageService(config);
 		descriptionService = new DescriptionService(databaseConfig);
+		soundService       = new SoundService(config);
 	}
 
 	void registerListener(Listener listener) {
@@ -46,7 +49,7 @@ public class Main extends JavaPlugin {
 	}
 
 	void registerEvents() {
-		registerListener(new InteractAtEntityListener(config, messageService, descriptionService));
+		registerListener(new InteractAtEntityListener(config, soundService, messageService, descriptionService));
 	}
 
 	void registerCommandExecutor(String name, CommandExecutor executor) {
