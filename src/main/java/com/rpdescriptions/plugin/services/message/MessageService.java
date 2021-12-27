@@ -1,7 +1,7 @@
 package com.rpdescriptions.plugin.services.message;
 
-import com.rpdescriptions.plugin.misc.Config;
-import com.rpdescriptions.plugin.misc.Utils;
+import com.rpdescriptions.plugin.utilities.Config;
+import com.rpdescriptions.plugin.utilities.Utils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;

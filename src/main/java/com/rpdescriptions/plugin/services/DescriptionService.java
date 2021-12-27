@@ -1,7 +1,7 @@
 package com.rpdescriptions.plugin.services;
 
-import com.rpdescriptions.plugin.misc.Config;
-import com.rpdescriptions.plugin.misc.Utils;
+import com.rpdescriptions.plugin.utilities.Config;
+import com.rpdescriptions.plugin.utilities.Utils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;

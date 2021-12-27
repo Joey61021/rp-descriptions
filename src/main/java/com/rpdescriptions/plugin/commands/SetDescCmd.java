@@ -1,6 +1,6 @@
 package com.rpdescriptions.plugin.commands;
 
-import com.rpdescriptions.plugin.misc.Config;
+import com.rpdescriptions.plugin.utilities.Config;
 import com.rpdescriptions.plugin.services.DescriptionService;
 import com.rpdescriptions.plugin.services.message.Message;
 import com.rpdescriptions.plugin.services.message.MessageService;

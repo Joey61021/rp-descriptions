@@ -1,6 +1,6 @@
 package com.rpdescriptions.plugin.services;
 
-import com.rpdescriptions.plugin.misc.Config;
+import com.rpdescriptions.plugin.utilities.Config;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Sound;

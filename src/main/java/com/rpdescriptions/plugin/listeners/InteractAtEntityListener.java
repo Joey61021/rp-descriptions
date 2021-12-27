@@ -2,7 +2,7 @@ package com.rpdescriptions.plugin.listeners;
 
 import com.rpdescriptions.plugin.cooldown.CooldownManager;
 import com.rpdescriptions.plugin.cooldown.TimeSpan;
-import com.rpdescriptions.plugin.misc.Config;
+import com.rpdescriptions.plugin.utilities.Config;
 import com.rpdescriptions.plugin.services.DescriptionService;
 import com.rpdescriptions.plugin.services.SoundService;
 import com.rpdescriptions.plugin.services.message.Message;

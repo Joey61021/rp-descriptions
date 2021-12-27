@@ -1,4 +1,4 @@
-package com.rpdescriptions.plugin.misc;
+package com.rpdescriptions.plugin.utilities;
 
 import com.rpdescriptions.plugin.services.DescriptionService;
 import lombok.NonNull;
