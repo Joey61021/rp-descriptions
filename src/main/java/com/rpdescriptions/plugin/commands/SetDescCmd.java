@@ -43,7 +43,7 @@ public class SetDescCmd implements CommandExecutor {
 		StringBuilder description = new StringBuilder();
 		for (String arg : args) description.append(arg).append(" ");
 		int limit = config.getInt("General.Limit");
-		if (description.length() > limit) {
+		if (description.toString().length() > limit) {
 			messageService.sendMessage(player,
 										Message.CMD_SETDESC_MESSAGES_TOO_LONG,
 										(s) -> s.replace("%limit%", String.valueOf(limit)));
