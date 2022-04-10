@@ -38,7 +38,7 @@ public class ForceDescCmd implements CommandExecutor {
 			return false;
 		}
 		if (args.length == 1) {
-			if (!descriptionService.hasDescription(target)) {
+			if (descriptionService.notSet(target)) {
 				messageService.sendMessage(sender,
 											Message.CMD_FORCEDESC_MESSAGES_NO_DESCRIPTION,
 											(s) -> s.replace("%target%", target.getName()));

@@ -1,4 +1,5 @@
 General:
+  Limt: 60
   Colored-Descriptions: true
   Player-Click:
     Enabled: true
@@ -25,6 +26,7 @@ Commands:
       Description-Set: '&aYour description has successfully been set!'
       Description-Reset: '&aYour description has been reset successfully!'
       Enter-Description: '&cPlease enter a description to set!'
+      Too-Long: '&cSorry, but descriptions cannot exceed %limit% characters!'
   ForceDesc:
     Messages:
       Description-Set: '&aYou have successfully set %target%''s description!'

@@ -4,11 +4,11 @@ import com.rpdescriptions.plugin.commands.ForceDescCmd;
 import com.rpdescriptions.plugin.commands.SetDescCmd;
 import com.rpdescriptions.plugin.commands.ViewDescCmd;
 import com.rpdescriptions.plugin.listeners.InteractAtEntityListener;
-import com.rpdescriptions.plugin.utilities.Config;
-import com.rpdescriptions.plugin.utilities.PAPIExpansion;
 import com.rpdescriptions.plugin.services.DescriptionService;
 import com.rpdescriptions.plugin.services.SoundService;
 import com.rpdescriptions.plugin.services.message.MessageService;
+import com.rpdescriptions.plugin.utilities.Config;
+import com.rpdescriptions.plugin.utilities.PAPIExpansion;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
@@ -23,6 +23,7 @@ public class Main extends JavaPlugin {
 	private DescriptionService descriptionService;
 	private SoundService       soundService;
 
+	@Override
 	public void onEnable() {
 		loadFiles();
 		setupServices();
@@ -62,7 +63,7 @@ public class Main extends JavaPlugin {
 
 	void registerCommands() {
 		registerCommandExecutor("forcedesc", new ForceDescCmd(messageService, descriptionService, databaseConfig));
-		registerCommandExecutor("setdesc", new SetDescCmd(messageService, descriptionService, databaseConfig));
+		registerCommandExecutor("setdesc", new SetDescCmd(messageService, descriptionService, databaseConfig, config));
 		registerCommandExecutor("viewdesc", new ViewDescCmd(messageService, descriptionService));
 	}
 }

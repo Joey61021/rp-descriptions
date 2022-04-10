@@ -20,6 +20,8 @@ public class SetDescCmd implements CommandExecutor {
 	private final DescriptionService descriptionService;
 	@NonNull
 	private final Config             databaseConfig;
+	@NonNull
+	private final Config             config;
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -29,7 +31,7 @@ public class SetDescCmd implements CommandExecutor {
 		}
 		Player player = (Player) sender;
 		if (args.length == 0) {
-			if (!descriptionService.hasDescription(player)) {
+			if (descriptionService.notSet(player)) {
 				messageService.sendMessage(player, Message.CMD_SETDESC_MESSAGES_ENTER_DESCRIPTION);
 				return false;
 			}
@@ -38,9 +40,16 @@ public class SetDescCmd implements CommandExecutor {
 			messageService.sendMessage(player, Message.CMD_SETDESC_MESSAGES_DESCRIPTION_RESET);
 			return false;
 		}
-		StringBuilder sb = new StringBuilder();
-		for (String arg : args) sb.append(arg).append(" ");
-		databaseConfig.set("Descriptions." + player.getUniqueId(), sb.toString());
+		StringBuilder description = new StringBuilder();
+		for (String arg : args) description.append(arg).append(" ");
+		int limit = config.getInt("General.Limit");
+		if (description.length() > limit) {
+			messageService.sendMessage(player,
+										Message.CMD_SETDESC_MESSAGES_TOO_LONG,
+										(s) -> s.replace("%limit%", String.valueOf(limit)));
+			return false;
+		}
+		databaseConfig.set("Descriptions." + player.getUniqueId(), description.toString());
 		databaseConfig.save();
 		messageService.sendMessage(sender, Message.CMD_SETDESC_MESSAGES_DESCRIPTION_SET);
 		return false;

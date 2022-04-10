@@ -18,6 +18,7 @@ public enum Message {
     CMD_SETDESC_MESSAGES_DESCRIPTION_SET("Commands.SetDesc.Messages.Description-Set"),
     CMD_SETDESC_MESSAGES_DESCRIPTION_RESET("Commands.SetDesc.Messages.Description-Reset"),
     CMD_SETDESC_MESSAGES_ENTER_DESCRIPTION("Commands.SetDesc.Messages.Enter-Description"),
+    CMD_SETDESC_MESSAGES_TOO_LONG("Commands.SetDesc.Messages.Too-Long"),
     CMD_FORCEDESC_MESSAGES_DESCRIPTION_SET("Commands.ForceDesc.Messages.Description-Set"),
     CMD_FORCEDESC_MESSAGES_DESCRIPTION_RESET("Commands.ForceDesc.Messages.Description-Reset"),
     CMD_FORCEDESC_MESSAGES_NO_DESCRIPTION("Commands.ForceDesc.Messages.No-Description");
