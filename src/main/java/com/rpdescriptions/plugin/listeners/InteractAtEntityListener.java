@@ -32,13 +32,14 @@ public class InteractAtEntityListener implements Listener {
     @EventHandler
     private void onInteractAtEntity(PlayerInteractAtEntityEvent event) {
         if (!(event.getRightClicked().getType().equals(EntityType.PLAYER) && config.getBoolean("General.Player-Click.Enabled"))) return;
-        Player player = event.getPlayer();
+        Player target = (Player) event.getRightClicked();
+        if (target.hasMetadata("NPC")) return;
         for (String worlds : config.getStringList("General.Player-Click.Disabled-Worlds")) {
-            if (event.getRightClicked().getWorld().getName().equalsIgnoreCase(worlds)) return;
+            if (target.getWorld().getName().equalsIgnoreCase(worlds)) return;
         }
+        Player player = event.getPlayer();
         if (CooldownManager.checkCooldown("click_" + player.getUniqueId())) {
             soundService.playSound(player, "General.Player-Click.Sound");
-            Player target = (Player) event.getRightClicked();
             messageService.sendMessage(player,
                                         Message.GENERAL_PLAYER_CLICK_MESSAGES,
                                         (s) -> s.replace("%username%", target.getName())
